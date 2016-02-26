@@ -17,7 +17,7 @@
 	<mvc:annotation-driven enable-matrix-variables="true" />
 
 
-	<bean id="taskExecutor"
+	<!-- <bean id="taskExecutor"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="5" />
 		<property name="maxPoolSize" value="10" />
@@ -26,6 +26,6 @@
 		<property name="rejectedExecutionHandler">
 			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
 		</property>
-	</bean>
+	</bean> -->
 
 </beans>

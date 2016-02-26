@@ -22,16 +22,17 @@ import com.mongodb.MongoClient;
 public class MongoScript {
 
 	private static final Logger logger = LoggerFactory.getLogger(MongoScript.class.getCanonicalName());
-	
+
 	public MongoClient mongo;
 	public DBCollection users;
 	public DBCollection products;
 	public RandomString randomString;
-	
+
 	private static final String MONGODB_HOST = ValiseConstants.VALISE_DB_HOST;
 
-	private List<String> colorList=new ArrayList<>();
-	
+	private List<String> colorList = new ArrayList<>();
+	private List<String> locationList = new ArrayList<>();
+
 	@SuppressWarnings("deprecation")
 	public MongoScript() {
 
@@ -47,7 +48,7 @@ public class MongoScript {
 			logger.error("Error while initializing db params script [{}]  [{}] ", e, e.getMessage());
 		}
 	}
-	
+
 	public static void main(String[] args) {
 
 		MongoScript script = new MongoScript();
@@ -57,8 +58,8 @@ public class MongoScript {
 	}
 
 	private void populateConstants() {
-		
-		//Color
+
+		// Color
 		colorList.add("red");
 		colorList.add("blue");
 		colorList.add("green");
@@ -66,7 +67,18 @@ public class MongoScript {
 		colorList.add("purple");
 		colorList.add("black");
 		colorList.add("brown");
-		
+
+		// location
+		locationList.add("Row- A1,Shelf:2,Item:5th");
+		locationList.add("Row- B1,Shelf:1,Item:2th");
+		locationList.add("Row- C3,Shelf:3,Item:4th");
+		locationList.add("Row- D6,Shelf:2,Item:7th");
+		locationList.add("Row- S2,Shelf:4,Item:9th");
+		locationList.add("Row- A2,Shelf:3,Item:6th");
+		locationList.add("Row- B5,Shelf:1,Item:3th");
+		locationList.add("Row- C7,Shelf:4,Item:5th");
+		locationList.add("Row- D2,Shelf:1,Item:2th");
+		locationList.add("Row- S1,Shelf:3,Item:6th");
 	}
 
 	private void insertProducts(String filename) {
@@ -106,7 +118,8 @@ public class MongoScript {
 
 		String section = arr[0];
 		if (StringUtils.isNotBlank(section)) {
-			//dbObject.put("section", Section.getSectionById(section.trim().toLowerCase()));
+			// dbObject.put("section",
+			// Section.getSectionById(section.trim().toLowerCase()));
 			dbObject.put("section", section.trim().toLowerCase());
 		}
 
@@ -143,11 +156,11 @@ public class MongoScript {
 		List<DBObject> list = addSizeQuantity(dbObject);
 
 		if (list.size() > 0) {
-			//logger.info(list.size());
+			// logger.info(list.size());
 		}
 
 	}
-	
+
 	public List<DBObject> addSizeQuantity(DBObject dbObject) {
 		List<DBObject> list = new ArrayList<>();
 
@@ -159,7 +172,8 @@ public class MongoScript {
 
 			for (String size : ClothingSize.getAllSizes()) {
 				try {
-					object.put("size", ClothingSize.getSizeByName(size));
+					object.put("location", locationList.get(randInt()));
+					object.put("size", size);
 					object.put("pid", randomString.nextString());
 					products.insert(object);
 					list.add(object);
@@ -172,8 +186,7 @@ public class MongoScript {
 		}
 		return list;
 	}
-	
-	
+
 	private DBObject getClone(DBObject dbObject) {
 		DBObject obj = new BasicDBObject();
 
