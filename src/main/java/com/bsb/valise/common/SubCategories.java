@@ -9,22 +9,22 @@ import org.json.simple.JSONObject;
 
 public enum SubCategories {
 
-	TOPWEAR("Topwear", Section.MALE),
-	BOTTOMWEAR("Bottomwear", Section.MALE),
-	SPORTSWEAR("Sportswear", Section.MALE),
-	INDIANWEAR("Indianwear", Section.FEMALE),
-	WESTERNWEAR("Westernwear",Section.FEMALE),
-	LINGERIE_SLEEPWARE("Lingerie_Sleepware", Section.FEMALE),
+	TOPWEAR("Topwear", Section.MEN),
+	BOTTOMWEAR("Bottomwear", Section.MEN),
+	SPORTSWEAR("Sportswear", Section.MEN),
+	INDIANWEAR("Indianwear", Section.WOMEN),
+	WESTERNWEAR("Westernwear",Section.WOMEN),
+	LINGERIE_SLEEPWARE("Lingerie_Sleepware", Section.WOMEN),
 
 	FOOTWEAR("Footwear", Section.ALL),
 
 	UNKNOWN("Unknown", null);
 
-	private static final Map<String, Categories> nameToEnum = new HashMap<>();
-	private static final Map<Categories, String> enumToName = new HashMap<>();
+	private static final Map<String, SubCategories> nameToEnum = new HashMap<>();
+	private static final Map<SubCategories, String> enumToName = new HashMap<>();
 
 	static {
-		for (Categories category : Categories.values()) {
+		for (SubCategories category : SubCategories.values()) {
 			enumToName.put(category, category.getName());
 			nameToEnum.put(category.getName(), category);
 		}
@@ -51,13 +51,13 @@ public enum SubCategories {
 		return getName();
 	}
 
-	public static Categories getCategoriesByName(String name) {
+	public static SubCategories getSubCategoriesByName(String name) {
 		if (StringUtils.isEmpty(name)) {
-			return Categories.UNKNOWN;
+			return SubCategories.UNKNOWN;
 		}
-		Categories category = nameToEnum.get(name);
+		SubCategories category = nameToEnum.get(name);
 		if (null == category) {
-			category = Categories.UNKNOWN;
+			category = SubCategories.UNKNOWN;
 		}
 		return category;
 	}

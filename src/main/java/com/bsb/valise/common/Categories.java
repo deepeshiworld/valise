@@ -9,10 +9,10 @@ import org.json.simple.JSONObject;
 
 public enum Categories {
 
-	TOPWEAR("Topwear", Section.MALE), BOTTOMWEAR("Bottomwear", Section.MALE), SPORTSWEAR("Sportswear", Section.MALE),
+	TOPWEAR("Topwear", Section.MEN), BOTTOMWEAR("Bottomwear", Section.MEN), SPORTSWEAR("Sportswear", Section.MEN),
 
-	INDIANWEAR("Indianwear", Section.FEMALE), WESTERNWEAR("Westernwear",
-			Section.FEMALE), LINGERIE_SLEEPWARE("Lingerie_Sleepware", Section.FEMALE),
+	INDIANWEAR("Indianwear", Section.WOMEN), WESTERNWEAR("Westernwear",
+			Section.WOMEN), LINGERIE_SLEEPWARE("Lingerie_Sleepware", Section.WOMEN),
 
 	FOOTWEAR("Footwear", Section.ALL),
 

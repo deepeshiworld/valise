@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 public enum Section {
 
-	ALL("All"), MALE("Male"), FEMALE("Female"), KIDS("Kids"), OTHERS("Others");
+	ALL("all"), MEN("men"), WOMEN("women"), KIDS("kids"), OTHERS("others");
 
 	private static final Map<Section, String> stringToEnum = new HashMap<>();
 	private static final Map<String, Section> nameToEnum = new HashMap<>();
