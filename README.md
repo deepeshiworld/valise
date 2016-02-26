@@ -1,7 +1,7 @@
 # valise
-1. Generate war
-  Run follwowing in root directory of project
-    mvn package
+1. <b>Generate war</b>
+  <p>Run follwowing in root directory of project</p>
+    <code>mvn package</code>
   
   This will create valise.war file in "target" folder.
   
