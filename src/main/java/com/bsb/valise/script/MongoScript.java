@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import com.bsb.valise.common.ClothingSize;
 import com.bsb.valise.common.RandomString;
 import com.bsb.valise.common.ValiseConstants;
+import com.bsb.valise.dto.Product;
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -55,6 +57,31 @@ public class MongoScript {
 
 		script.populateConstants();
 		script.insertProducts("/Users/deepesh/Documents/iworld/valise/src/main/resources/input.txt");
+
+//		script.toJson();
+	}
+
+	private void toJson() {
+		Product product = new Product();
+		product.setSection("MEN");
+		product.setCategory("Topwear");
+		product.setSubcategory("Casual Shirts");
+		product.setBrand("LOCOMOTIVE");
+		product.setTagname("Blue Printed Denim");
+		product.setColor("red");
+		product.setPrice(324);
+		product.setPid("5x4qcx88ha");
+		product.setDescription(
+				"Trendy casual shirts are a fashion essential this season and this uber cool piece is just the right pick. This shirt features short sleeves, stand collar with a full buttoned chest placket for added ease, patch back yoke and a curved hem that completes the look. Pair this piece with chinos and loafers for a stylish laid back look.");
+		product.setSize("small");
+		product.setLocation("Row- C3,Shelf:3,Item:4th");
+
+		Gson gson = new Gson();
+		String json = gson.toJson(product);
+		logger.info(json);
+
+		Product p = gson.fromJson(json, Product.class);
+		logger.info(p.getPid());
 	}
 
 	private void populateConstants() {
@@ -151,6 +178,11 @@ public class MongoScript {
 		String description = arr[6];
 		if (StringUtils.isNotBlank(description)) {
 			dbObject.put("description", description.trim());
+		}
+		
+		String title = arr[7];
+		if (StringUtils.isNotBlank(title)) {
+			dbObject.put("title", title.trim());
 		}
 
 		List<DBObject> list = addSizeQuantity(dbObject);

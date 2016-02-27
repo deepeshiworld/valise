@@ -16,16 +16,14 @@
 	<context:annotation-config />
 	<mvc:annotation-driven enable-matrix-variables="true" />
 
+	<bean id="mongoManager" class="com.bsb.valise.service.MongoManager">
+	</bean>
 
-	<!-- <bean id="taskExecutor"
-		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-		<property name="corePoolSize" value="5" />
-		<property name="maxPoolSize" value="10" />
-		<property name="queueCapacity" value="5" />
-		<property name="waitForTasksToCompleteOnShutdown" value="true" />
-		<property name="rejectedExecutionHandler">
-			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
-		</property>
-	</bean> -->
+	<bean id="productService" class="com.bsb.valise.service.ProductService">
+		<!-- <property name="mongoManager">
+			<ref bean="mongoManager" />
+		</property> -->
+	</bean>
+
 
 </beans>

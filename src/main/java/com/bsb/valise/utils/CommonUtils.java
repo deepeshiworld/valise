@@ -1,16 +1,18 @@
 package com.bsb.valise.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -21,8 +23,7 @@ public class CommonUtils {
 	private static final Integer MSN_UUV0_SIZE_MAX = Integer.valueOf(17);
 	private static final Integer MSN_UUV1_SIZE_MAX = Integer.valueOf(27);
 	private static String key;
-
-	private static final Logger logger = LoggerFactory.getLogger(CommonUtils.class.getCanonicalName());
+	public static Map<Integer, List<String>> map = new HashMap<>();
 
 	public static String generateUUID(String msisdn) throws Exception {
 		String uuid = null;
@@ -148,5 +149,125 @@ public class CommonUtils {
 			}
 		}
 		return false;
+	}
+
+	public static List<String> getSimilarPidList(int index) {
+		populateMap();
+		return map.get(index);
+	}
+
+	public static void populateMap() {
+		List<String> list1 = new ArrayList<>();
+		// 1
+		list1.add("rj15kibpby");
+		list1.add("jx3b6ddgf6");
+		list1.add("283vxqxthk");
+		map.put(1, list1);
+
+		List<String> list2 = new ArrayList<>();
+		// 2
+		list2.add("rla0k6ts44");
+		list2.add("8b1b9gh6lw");
+		list2.add("q7vtlgxjjb");
+		map.put(2, list2);
+
+		List<String> list3 = new ArrayList<>();
+		// 3
+		list3.add("yifchtfenc");
+		list3.add("2wir20sffy");
+		list3.add("xpg3tw8vir");
+		map.put(3, list3);
+
+		List<String> list4 = new ArrayList<>();
+		// 4
+		list4.add("mf71zkwhmf");
+		list4.add("zdqlpholf6");
+		list4.add("t1piwi83st");
+		map.put(4, list4);
+
+		List<String> list5 = new ArrayList<>();
+
+		// 5
+		list5.add("ia9j90l52z");
+		list5.add("6zy81w52ed");
+		list5.add("aznau3v6e1");
+		map.put(5, list5);
+
+		List<String> list6 = new ArrayList<>();
+		// 6
+		list6.add("a653o40h0b");
+		list6.add("opkauaywze");
+		list6.add("6zy81w52ed");
+		map.put(6, list6);
+
+		List<String> list7 = new ArrayList<>();
+		// 7
+		list7.add("slp1mv02wy");
+		list7.add("a0dv68vnbv");
+		list7.add("p21sytdewu");
+		map.put(7, list7);
+
+		List<String> list8 = new ArrayList<>();
+		// 8
+		list8.add("ab0vh14o63");
+		list8.add("si22hxbv2v");
+		list8.add("ovacawb64m");
+		map.put(8, list8);
+
+		List<String> list9 = new ArrayList<>();
+		// 9
+		list9.add("ndwwzhmyro");
+		list9.add("rzxrh9vkmd");
+		list9.add("ghyt1gs5m3");
+		map.put(9, list9);
+
+		List<String> list10 = new ArrayList<>();
+		// 10
+		list10.add("4d7h5l2egg");
+		list10.add("r8ghiah00d");
+		list10.add("2vyndwx7bt");
+		map.put(10, list10);
+
+	}
+
+	public static int randInt() {
+
+		int min = 0;
+		int max = 10;
+		Random rand = new Random();
+
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+
+		return randomNum;
+	}
+
+	public static int randInt(int min, int max) {
+
+		Random rand = new Random();
+
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+
+		return randomNum;
+	}
+
+	public static float randFloat() {
+		float minX = 0.0f;
+		float maxX = 5.0f;
+
+		Random rand = new Random();
+
+		float finalX = rand.nextFloat() * (maxX - minX) + minX;
+
+		return finalX;
+	}
+	
+	public static String getSizeMapping(String name) {
+		Map<String, String> sizeMap = new HashMap<>();
+		sizeMap.put("small", "36");
+		sizeMap.put("small", "38");
+		sizeMap.put("small", "40");
+		sizeMap.put("small", "42");
+
+		return sizeMap.get(name);
 	}
 }
