@@ -43,6 +43,10 @@ public class ProductService {
 		}
 
 		Product product = getProductFromDB(pid);
+		if (product == null) {
+			logger.error("no product found correponding to pid : " + pid);
+			return null;
+		}
 		product.setSize(CommonUtils.getSizeMapping(product.getSize()));
 
 		ProductDetailDto detailDto = new ProductDetailDto();

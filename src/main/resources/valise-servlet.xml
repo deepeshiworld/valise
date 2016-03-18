@@ -13,18 +13,7 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-	<context:component-scan base-package="com.bsb.valise" />
-
-	<context:annotation-config />
-
-	<mvc:annotation-driven enable-matrix-variables="true" />
-	<aop:aspectj-autoproxy expose-proxy="true" />
-
-	<bean id="mongoManager" class="com.bsb.valise.service.MongoManager">
-	</bean>
-
-	<bean id="productService" class="com.bsb.valise.service.ProductService">
-	</bean>
+	<aop:aspectj-autoproxy />
 
 	<bean id="customerBo" class="com.bsb.valise.dto.CustomerBoImpl"></bean>
 
