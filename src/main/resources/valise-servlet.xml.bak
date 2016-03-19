@@ -4,6 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:solr="http://www.springframework.org/schema/data/solr" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 	http://www.springframework.org/schema/context
@@ -11,23 +12,24 @@
 	http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
     http://www.springframework.org/schema/aop
-    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+    http://www.springframework.org/schema/data/jpa
+    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    http://www.springframework.org/schema/data/solr 
+    http://www.springframework.org/schema/data/solr/spring-solr.xsd">
 
-	<context:component-scan base-package="com.bsb.valise" />
-
-	<context:annotation-config />
-
-	<mvc:annotation-driven enable-matrix-variables="true" />
-	<aop:aspectj-autoproxy expose-proxy="true" />
-
-	<bean id="mongoManager" class="com.bsb.valise.service.MongoManager">
-	</bean>
-
-	<bean id="productService" class="com.bsb.valise.service.ProductService">
-	</bean>
+	<aop:aspectj-autoproxy />
 
 	<bean id="customerBo" class="com.bsb.valise.dto.CustomerBoImpl"></bean>
 
 	<!-- Aspect -->
 	<bean id="logAspect" class="com.bsb.valise.aspect.LoggingAspect"></bean>
+
+	<!-- <jpa:repositories base-package="com.bsb.valise.helpSupport"></jpa:repositories> -->
+
+	<solr:solr-server />
+
+	<solr:repositories base-package="com.bsb.valise.helpSupport">
+	</solr:repositories>
+
 </beans>
