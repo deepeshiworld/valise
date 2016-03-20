@@ -1,10 +1,10 @@
 package com.bsb.valise.helpSupport.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
 @SolrDocument(solrCoreName = "helpsupport")
@@ -14,32 +14,25 @@ public class HelpSupportDto implements Serializable {
 
 	@Id
 	@Field(SearchableItem.ID_FIELD)
-	@Indexed(type = "string")
 	private String id;
 
 	@Field(SearchableItem.LOB_FIELD)
-	@Indexed(type = "string")
 	private String lob;
 
 	@Field(SearchableItem.CAT_FIELD)
-	@Indexed(type = "text_general")
 	private String cat;
 
 	@Field(SearchableItem.CAT_IMAGE_URL_FIELD)
-	@Indexed(type = "string")
 	private String catImageUrl;
 
 	@Field(SearchableItem.SUB_CAT_FIELD)
-	@Indexed(type = "text_general")
 	private String subCategory;
 
 	@Field(SearchableItem.QUESTION_FIELD)
-	@Indexed(type = "text_general")
 	private String question;
 
 	@Field(SearchableItem.ANSWER_FIELD)
-	@Indexed(type = "string")
-	private String answer;
+	private List<String> answer;
 
 	public String getId() {
 		return id;
@@ -89,11 +82,11 @@ public class HelpSupportDto implements Serializable {
 		this.question = question;
 	}
 
-	public String getAnswer() {
+	public List<String> getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(String answer) {
+	public void setAnswer(List<String> answer) {
 		this.answer = answer;
 	}
 

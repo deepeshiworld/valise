@@ -11,7 +11,7 @@ import org.springframework.data.solr.repository.Query;
 import com.bsb.valise.helpSupport.model.HelpSupportDto;
 import com.bsb.valise.helpSupport.model.SearchableItem;
 
-public interface HelpSupportRepo extends CrudRepository<HelpSupportDto, Serializable> {
+public interface HelpSupportRepo {
 
 	@Query(SearchableItem.LOB_FIELD + ":?0")
 	public HelpSupportDto findQuesByLob(String lob);

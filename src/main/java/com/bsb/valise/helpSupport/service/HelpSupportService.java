@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bsb.valise.helpSupport.model.HelpSupportDto;
-import com.bsb.valise.helpSupport.repository.HelpSupportRepo;
+import com.bsb.valise.helpSupport.repository.HelpSupportRepoImpl;
 
 @Service
 public class HelpSupportService {
 
 	@Autowired
-	HelpSupportRepo helpSupportRepo;
+	HelpSupportRepoImpl helpSupportRepo;
 
 	public HelpSupportDto getHelpSupportDataByLob(String lob) {
 		// HelpSupportDto dto = helpSupportRepo.findOne("123");
